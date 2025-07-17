@@ -2,17 +2,25 @@
 
 Aplikasi ini adalah sistem manajemen antrian bank berbasis desktop yang dirancang untuk mengelola alur pelanggan dengan efisien, menggunakan prioritas antrian dan pengumuman suara.
 
-## 🖼️ Tampilan Aplikasi
+## 🖼️ Tampilan Antarmuka Aplikasi
 
-Berikut adalah tampilan antarmuka utama aplikasi:
+Berikut adalah beberapa tangkapan layar yang menunjukkan antarmuka pengguna aplikasi:
 
-![Tampilan Input Bisnis Pada Sistem Antrian Bank](https://media.discordapp.net/attachments/1395420030589730939/1395420140388094105/Screenshot_378.png?ex=687a61c7&is=68791047&hm=26394b50e3556ea5657e39e7a3da36d78f2e6aee7b29aa64abaa110970071b6f&=&format=webp)
+### Layar Utama
+Menampilkan status meja pelayanan saat ini, nomor antrian selanjutnya, daftar antrian yang menunggu, dan log aktivitas.
+![Layar Utama Sistem Antrian Bank](https://media.discordapp.net/attachments/1395420030589730939/1395474433191448657/Screenshot_391.png?ex=687a9457&is=687942d7&hm=89035cda79055536dc829c2866b0265dd9f0d5e4841119ee565154f1a162f736&=&format=webp)
 
+### Tambah Antrian Bisnis
+Dialog untuk menambahkan pelanggan ke antrian bisnis, termasuk nama pelanggan dan jenis layanan.
+![Dialog Tambah Antrian Bisnis](https://media.discordapp.net/attachments/1395420030589730939/1395474432859836648/Screenshot_392.png?ex=687a9457&is=687942d7&hm=808dbb42aaa3118437c40425a0279834b9f43d3867705a5acd675c8867c6da25&=&format=webp)
 
-![Tampilan Input Personal Sistem Pada Antrian Bank](https://media.discordapp.net/attachments/1395420030589730939/1395420139930779658/Screenshot_379.png?ex=687a61c7&is=68791047&hm=6c9ce6da5f07610b0870548a23fbc7bdebce0dd60fc362af0083fce173d33563&=&format=webp)
+### Tambah Antrian Personal
+Dialog untuk menambahkan pelanggan ke antrian personal, termasuk nama pelanggan dan jenis layanan.
+![Dialog Tambah Antrian Personal](https://media.discordapp.net/attachments/1395420030589730939/1395474432524419222/Screenshot_393.png?ex=687a9457&is=687942d7&hm=9197a795109a653c30b504426f9953be5228a2d80b3cb7ae5008db086e028a32&=&format=webp)
 
-
-![Tampilan Panggilan Untuk Ke-Meja Pada Sistem Antrian Bank](https://media.discordapp.net/attachments/1395420030589730939/1395420139520000041/Screenshot_380.png?ex=687a61c6&is=68791046&hm=a113ddcc40242ea9db5e3d71aab83fd79a00ee863075f56086d8ac7b0d2bdc26&=&format=webp)
+### Panggilan Meja
+Pesan konfirmasi yang muncul setelah memanggil pelanggan ke meja, menampilkan detail pelanggan.
+![Dialog Panggilan Meja](https://media.discordapp.net/attachments/1395420030589730939/1395474432121896980/Screenshot_394.png?ex=687a9457&is=687942d7&hm=f0c1fe4067f0f079c50fc8870f70c88a3de0744436f1a05dfc84cf954fd888bb&=&format=webp)
 
 ## 🎯 Tujuan Aplikasi
 
@@ -23,40 +31,33 @@ Tujuan utama dari aplikasi ini adalah untuk:
 4.  **Tampilan Real-time**: Menampilkan status antrian dan meja layanan secara langsung.
 5.  **Kemudahan Penggunaan**: Menyediakan antarmuka yang intuitif untuk petugas bank.
 
-## 💡 Fungsionalitas Utama
+## ✨ Fitur Utama Berdasarkan Spesifikasi
 
-Aplikasi ini memiliki fungsionalitas inti sebagai berikut:
+Aplikasi ini dirancang untuk memenuhi persyaratan spesifik berikut:
+
+*   **Antrian Terpisah dengan Prioritas**: Nomor antrian untuk tabungan bisnis (berawalan 'B') dan personal (berawalan 'P') memiliki urutan numerik yang terpisah dan independen (masing-masing 1-100, berulang). Pelanggan bisnis memiliki prioritas lebih tinggi daripada pelanggan personal. Sistem menggunakan `heap` untuk memastikan prioritas ini.
+*   **Dua Meja Pelayanan**: Aplikasi mendukung dua meja pelayanan, yaitu `Meja 1` dan `Meja 2`, yang dapat memanggil pelanggan secara independen.
+*   **Pengumuman Suara Otomatis**: Aplikasi wajib menggunakan suara untuk pemanggilan antrian. Sistem ini menggunakan pustaka `pyttsx3` untuk mengumumkan nomor antrian yang dipanggil ke meja tertentu dalam Bahasa Indonesia.
+*   **Tampilan Nomor Antrian Meja**: Nomor antrian pelanggan yang sedang dilayani di `Meja 1` dan `Meja 2` ditampilkan secara jelas di antarmuka utama.
+
+## 💡 Fungsionalitas Tambahan
+
+Selain fitur utama di atas, aplikasi ini juga memiliki fungsionalitas tambahan:
 
 1.  **Penambahan Antrian**:
     *   Petugas dapat menambahkan pelanggan baru ke antrian.
     *   Tersedia dua jenis antrian: **Bisnis** dan **Personal**.
     *   Setiap pelanggan akan mendapatkan nomor antrian unik (misalnya, B001, P002).
-    *   Nomor antrian berurutan dari 001 hingga 100, dan akan mengulang kembali dari 001 setelah mencapai 100. Sistem memastikan tidak ada nomor antrian ganda yang aktif.
     *   Setelah ditambahkan, sistem akan memberikan pengumuman suara "Selamat datang. Nomor antrian Anda adalah [Nomor Antrian]".
+    *   Pilihan Jenis Layanan: Saat menambahkan pelanggan, petugas dapat memilih jenis layanan yang relevan dari daftar yang telah ditentukan.
 
-2.  **Manajemen Prioritas**:
-    *   Pelanggan **Bisnis** memiliki prioritas lebih tinggi daripada pelanggan **Personal**.
-    *   Sistem menggunakan struktur data `heap` untuk memastikan pelanggan dengan prioritas lebih tinggi dilayani terlebih dahulu. Jika prioritas sama, pelanggan yang datang lebih dulu akan dilayani.
-
-3.  **Panggilan Pelanggan (Meja 1 & Meja 2)**:
-    *   Tersedia dua meja layanan (`Meja 1` dan `Meja 2`).
-    *   Petugas dapat memanggil pelanggan berikutnya dari antrian ke meja yang tersedia.
+2.  **Panggilan Pelanggan**:
     *   Saat pelanggan dipanggil, sistem akan mengumumkan suara: "Nomor antrian [Nomor Antrian], silakan ke meja [Nomor Meja]".
-    *   Nomor antrian yang sedang dilayani di setiap meja akan ditampilkan di layar utama.
 
-4.  **Tampilan Status Real-time**:
-    *   Layar utama menampilkan nomor antrian yang sedang dilayani di `Meja 1` dan `Meja 2`.
-    *   Juga menampilkan "Nomor Selanjutnya" yang akan dipanggil dari antrian.
+3.  **Tampilan Status Real-time**:
+    *   Layar utama menampilkan "Nomor Selanjutnya" yang akan dipanggil dari antrian.
     *   Daftar antrian yang menunggu ditampilkan secara real-time, diurutkan berdasarkan prioritas.
     *   Log aktivitas terbaru ditampilkan untuk memantau operasi sistem.
-
-5.  **Statistik Pelayanan**:
-    *   Aplikasi melacak total pelanggan yang dilayani, jumlah pelanggan bisnis dan personal yang dilayani, serta panjang antrian yang menunggu.
-    *   Statistik ini dapat dilihat melalui menu "Lihat Statistik".
-
-6.  **Pengaturan Suara**:
-    *   Tersedia opsi untuk menguji sistem suara.
-    *   Memberikan informasi dasar tentang status sistem suara.
 
 ## 💻 Teknologi yang Digunakan
 
@@ -74,6 +75,48 @@ Aplikasi ini dirancang untuk berjalan dalam mode layar penuh secara otomatis saa
 
 *   **Manfaat**: Memberikan pengalaman pengguna yang imersif dan memastikan tampilan yang konsisten di berbagai ukuran monitor, ideal untuk display publik di area tunggu bank.
 *   **Keluar dari Layar Penuh**: Untuk keluar dari aplikasi (dan mode layar penuh), Anda dapat menggunakan tombol "Keluar" yang tersedia di menu aplikasi.
+
+## 🚀 Panduan Instalasi dan Penggunaan
+
+Untuk menjalankan aplikasi ini, Anda perlu menginstal Python dan beberapa pustaka tambahan. Anda juga dapat mengemas aplikasi ini menjadi file executable (`.exe`) untuk distribusi yang lebih mudah.
+
+### 📦 Instalasi Dependensi
+
+Ikuti langkah-langkah di bawah ini untuk menginstal Python dan semua pustaka yang diperlukan:
+
+1.  **Instal Python**:
+    Jika Anda belum memiliki Python, unduh dan instal versi terbaru dari situs resmi Python: [python.org](https://www.python.org/downloads/). Pastikan untuk mencentang opsi "Add Python to PATH" selama instalasi.
+
+2.  **Verifikasi Instalasi Python dan pip**:
+    Buka Command Prompt (CMD) atau Terminal dan jalankan perintah berikut untuk memastikan Python dan pip (manajer paket Python) terinstal dengan benar:
+    
+    ```python --version```
+    ```pip --version```
+3.  **Instal Pustaka yang Diperlukan**:
+    Navigasikan ke direktori proyek Anda di Command Prompt atau Terminal (tempat file `queue_system.py` dan `requirements.txt` berada), lalu jalankan perintah berikut untuk menginstal semua dependensi:
+    ```pip install -r requirements.txt```
+    Perintah ini akan menginstal `pyttsx3` dan pustaka lain yang mungkin diperlukan.
+
+### ⚙️ Membuat Aplikasi Executable (.exe)
+
+Anda dapat mengubah skrip Python ini menjadi file `.exe` yang dapat dijalankan di Windows tanpa perlu menginstal Python atau dependensi secara terpisah. Kami akan menggunakan `PyInstaller` untuk ini.
+
+1.  **Instal PyInstaller**:
+    Jika Anda belum menginstalnya, instal PyInstaller menggunakan pip:
+    ```pip install pyinstaller```
+
+2.  **Buat File Executable**:
+    Navigasikan ke direktori proyek Anda di Command Prompt atau Terminal. Kemudian, jalankan perintah PyInstaller berikut:
+    ```pyinstaller --onefile --windowed queue_system.py```
+    *   `--onefile`: Mengemas semua yang diperlukan ke dalam satu file `.exe`.
+    *   `--windowed` (atau `-w`): Mencegah jendela konsol hitam muncul saat aplikasi GUI dijalankan.
+
+3.  **Temukan Aplikasi Anda**:
+    Setelah proses selesai, Anda akan menemukan file `.exe` di dalam folder `dist` yang dibuat di direktori proyek Anda (misalnya, `dist/queue_system.exe`).
+
+**Catatan Penting**:
+*   Beberapa perangkat lunak antivirus mungkin menandai file `.exe` yang dibuat oleh PyInstaller sebagai potensi ancaman. Ini adalah *false positive* yang umum karena cara PyInstaller mengemas aplikasi.
+*   Proses pembuatan `.exe` mungkin membutuhkan waktu beberapa menit.
 
 ## 🤝 Interaksi Pengguna
 
